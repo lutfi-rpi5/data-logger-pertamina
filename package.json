@@ -1,0 +1,33 @@
+{
+  "name": "data-logger-pertamina",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "migrate": "npx prisma migrate dev --name init --schema=src/prisma/schema.prisma",
+    "migrate-seed": "npx prisma migrate dev --name init --schema=src/prisma/schema.prisma && node src/prisma/seed.js",
+    "deploy": "npx prisma migrate deploy --schema=src/prisma/schema.prisma",
+    "generate": "npx prisma generate --schema=src/prisma/schema.prisma",
+    "reset-db": "npx prisma migrate reset --schema=src/prisma/schema.prisma",
+    "studio": "npx prisma studio --schema=src/prisma/schema.prisma",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Muhammad Lutfi Nur Anendi",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^6.14.0",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mqtt": "^5.14.0",
+    "mysql2": "^3.14.3",
+    "nodemon": "^3.1.10",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "prisma": "^6.14.0"
+  }
+}

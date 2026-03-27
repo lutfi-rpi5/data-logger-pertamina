@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Pertamina Monitoring & Logger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- LineIcons -->
+  <link href="https://cdn.lineicons.com/5.0/lineicons.css" rel="stylesheet" />
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILfY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ECharts -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
+  <!-- Custom style -->
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+  <div class="app-shell">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-brand">
+        <!-- <div class="brand-mark">L</div> -->
+        <div class="brand-mark">
+          <img src="./assets/img/pertamina-icon.png" alt="Pertamina Logo">
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Hi, Lutfi Anendi</div>
+          <div class="brand-subtitle">Pertamina Hulu Energi</div>
+        </div>
+      </div>
+
+      <div class="brand-panel">
+        <div class="brand-panel-title">PT Pertamina EP</div>
+        <div class="brand-panel-desc">Zona 4 Adera Field</div>
+      </div>
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-item">
+          <a href="/" class="sidebar-link active">
+            <i class="lni lni-dashboard-square-1"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#logger"
+            aria-expanded="true" aria-controls="logger">
+            <i class="lni lni-bar-chart-4"></i>
+            <span>Logger</span>
+          </a>
+          <ul id="logger" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+            <li class="sidebar-item">
+              <a href="/logging" class="sidebar-link sub-link">
+                <span>Logging</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="/logging_session" class="sidebar-link sub-link">
+                <span>Logging Session</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="sidebar-item">
+          <a href="/device" class="sidebar-link">
+            <i class="lni lni-layers-1"></i>
+            <span>Device</span>
+          </a>
+        </li>
+
+        <li class="sidebar-item">
+          <a href="/report" class="sidebar-link">
+            <i class="lni lni-file-pencil"></i>
+            <span>Report</span>
+          </a>
+        </li>
+
+        <li class="sidebar-item">
+          <a href="/about" class="sidebar-link">
+            <i class="lni lni-user-4"></i>
+            <span>About Dev</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main -->
+    <div class="app-main">
+      <header class="topbar">
+        <button class="toggler-btn" type="button" aria-label="Toggle sidebar" aria-expanded="false">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M15 6.375L4 6.375C3.37868 6.375 2.875 5.87132 2.875 5.25C2.875 4.62868 3.37868 4.125 4 4.125L15 4.125C15.6213 4.125 16.125 4.62868 16.125 5.25C16.125 5.87132 15.6213 6.375 15 6.375ZM20 10.875L4 10.875C3.37868 10.875 2.875 10.3713 2.875 9.75C2.875 9.12868 3.37868 8.625 4 8.625L20 8.625C20.6213 8.625 21.125 9.12868 21.125 9.75C21.125 10.3713 20.6213 10.875 20 10.875ZM15 15.375L4 15.375C3.37868 15.375 2.875 14.8713 2.875 14.25C2.875 13.6287 3.37868 13.125 4 13.125L15 13.125C15.6213 13.125 16.125 13.6287 16.125 14.25C16.125 14.8713 15.6213 15.375 15 15.375ZM20 19.875L4 19.875C3.37868 19.875 2.875 19.3713 2.875 18.75C2.875 18.1287 3.37868 17.625 4 17.625L20 17.625C20.6213 17.625 21.125 18.1287 21.125 18.75C21.125 19.3713 20.6213 19.875 20 19.875Z"
+              fill="currentColor" />
+          </svg>
+        </button>
+
+        <div class="topbar-title">
+          <div class="topbar-kicker">Data Logger Dashboard</div>
+          <h1>Upstream Field Data Logger</h1>
+        </div>
+
+        <div class="topbar-meta">
+          <span class="status-pill">
+            <span class="status-dot"></span>
+            Live
+          </span>
+          <div class="clock-wrap" id="current-time">Loading time...</div>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="hero-strip">
+          <div>
+            <h2 class="page-title">Dashboard</h2>
+            <div class="page-subtitle">Energi untuk Negeri</div>
+          </div>
+          <div class="hero-note">
+            <span class="note-label">System</span>
+            <span class="note-value">Realtime Acquisition Data</span>
+          </div>
+        </section>
+
+        <section class="container-fluid px-3 px-lg-4 py-3">
+          <div class="row g-3">
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card metric-card l1">
+                <div class="metric-head">
+                  <h3>Water Pump</h3>
+                  <span class="phase-badge red">Machine_1</span>
+                </div>
+                <p id="v_l1">Param 1: 00.0 psi</p>
+                <p id="i_l1">Param 2: 00.0 psi</p>
+                <p id="f_l1">Param 3: 00.0 psi</p>
+                <p id="va_l1">Param 4: 00.0 psi</p>
+                <p id="var_l1">Param 5: 00.0 psi</p>
+                <p id="p_l1">Param 6: 00.0 psi</p>
+                <p id="pf_l1">Param 7: 00.0 psi</p>
+                <p id="e_l1">Param 8: 00.0 psi</p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card metric-card l2">
+                <div class="metric-head">
+                  <h3>Water Pump</h3>
+                  <span class="phase-badge blue">Machine_2</span>
+                </div>
+                <p id="v_l1">Param 1: 00.0 psi</p>
+                <p id="i_l1">Param 2: 00.0 psi</p>
+                <p id="f_l1">Param 3: 00.0 psi</p>
+                <p id="va_l1">Param 4: 00.0 psi</p>
+                <p id="var_l1">Param 5: 00.0 psi</p>
+                <p id="p_l1">Param 6: 00.0 psi</p>
+                <p id="pf_l1">Param 7: 00.0 psi</p>
+                <p id="e_l1">Param 8: 00.0 psi</p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card metric-card l3">
+                <div class="metric-head">
+                  <h3>L3 - N</h3>
+                  <span class="phase-badge green">Phase 3</span>
+                </div>
+                <p id="v_l3">Voltage: 00.0 V</p>
+                <p id="i_l3">Current: 00.0 A</p>
+                <p id="f_l3">Frequency: 00.0 Hz</p>
+                <p id="va_l3">Apparent Power: 00.0 VA</p>
+                <p id="var_l3">Reactive Power: 00.0 VAr</p>
+                <p id="p_l3">Active Power: 00.0 W</p>
+                <p id="pf_l3">Power Factor: 00.0</p>
+                <p id="e_l3">Active Energy: 00.0 Wh</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="container-fluid px-3 px-lg-4 pb-4">
+          <div class="chart-card">
+            <h5 class="chart-title" id="title_chart1"></h5>
+            <div id="chart1" class="chart-box-detail"></div>
+          </div>
+          <div class="chart-card">
+            <h5 class="chart-title" id="title_chart2"></h5>
+            <div id="chart2" class="chart-box-detail"></div>
+          </div>
+          <div class="chart-card">
+            <h5 class="chart-title" id="title_chart3"></h5>
+            <div id="chart3" class="chart-box-detail"></div>
+          </div>
+          <div class="chart-card">
+            <h5 class="chart-title" id="title_chart4"></h5>
+            <div id="chart4" class="chart-box-detail"></div>
+          </div>
+          <div class="chart-card">
+            <h5 class="chart-title" id="title_chart5"></h5>
+            <div id="chart5" class="chart-box-detail"></div>
+          </div>
+          <div class="chart-card">
+            <h5 class="chart-title" id="title_chart6"></h5>
+            <div id="chart6" class="chart-box-detail"></div>
+          </div>
+          <div class="chart-card">
+            <h5 class="chart-title" id="title_chart7"></h5>
+            <div id="chart7" class="chart-box-detail"></div>
+          </div>
+          <div class="chart-card">
+            <h5 class="chart-title" id="title_chart8"></h5>
+            <div id="chart8" class="chart-box-detail"></div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        © 2025 Raxva Concept | Made With ❤ by Lutfi Anendi
+      </footer>
+    </div>
+  </div>
+
+  <button onclick="topFunction()" id="myBtn" title="Go to top" aria-label="Back to top">
+    <svg width="28" height="28" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M12 22.875C6.47715 22.875 2 18.3978 2 12.875C2 7.35215 6.47715 2.875 12 2.875C17.5228 2.875 22 7.35215 22 12.875C22 18.3978 17.5228 22.875 12 22.875ZM8.05711 14.412C8.1732 14.6923 8.44667 14.875 8.75002 14.875H15.25C15.5534 14.875 15.8268 14.6923 15.9429 14.412C16.059 14.1318 15.9949 13.8092 15.7804 13.5947L12.5304 10.3447C12.2375 10.0518 11.7626 10.0518 11.4697 10.3447L8.21969 13.5947C8.00519 13.8092 7.94103 14.1318 8.05711 14.412Z"
+        fill="currentColor" />
+    </svg>
+  </button>
+
+  <!-- JS Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+
+  <!-- Socket.IO client -->
+  <script src="/socket.io/socket.io.js"></script>
+
+  <!-- App script -->
+  <script src="./js/script.js"></script>
+  <script src="../controllers/logController.js"></script>
+</body>
+
+</html>
